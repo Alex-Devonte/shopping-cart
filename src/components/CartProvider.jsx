@@ -38,6 +38,15 @@ function CartProvider({children}) {
         ]);
       }
     };
+
+    const getTotal = () => {
+      let total = 0;
+      cart.map((item) => {
+        total += item.cartItem.price * item.qty;
+      });
+
+      return total.toFixed(2);
+    };
   
     //Get and set product data
     const fetchData = () => {
@@ -57,7 +66,7 @@ function CartProvider({children}) {
     if (loading) return <p>Loading... Please Wait</p>;
 
     return (
-        <CartContext.Provider value={{ cart, products, addToCart }}>
+        <CartContext.Provider value={{ cart, products, addToCart, getTotal }}>
           {children}
         </CartContext.Provider>
       );
