@@ -44,7 +44,7 @@ function Cart () {
                                 {cart.map((item) => (
                                     <tr key={item.cartItem.id}>
                                         <td><img src={item.cartItem.image}  style={{width: '150px'}}/></td>
-                                        <td>{item.cartItem.price}</td>
+                                        <td>{item.cartItem.price.toFixed(2)}</td>
                                         <td><input type="number" name="quantity" min={minQty} max={maxQty} value={item.qty}  onChange={(e) => handleQtyChange(item, e)}/></td>
                                         <td>{(item.cartItem.price * item.qty).toFixed(2)}</td>
                                     </tr>
