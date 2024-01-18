@@ -26,8 +26,9 @@ function CartProvider({children}) {
           //Create new array containing everything before the existing item
           ...prevCart.slice(0, existingItemIndex),
 
-          //Shallow copy to keep existing properties and update qty
-          {...prevCart[existingItemIndex], qty: prevCart[existingItemIndex].qty + qty},
+          //Shallow copy to keep existing properties and update qty 
+          //Use Math.min to ensure qty doesn't exceed 99
+          {...prevCart[existingItemIndex], qty: Math.min(99, prevCart[existingItemIndex].qty + qty)},
 
           //Adds the remaining items in the array after the existing item.
           ...prevCart.slice(existingItemIndex + 1)
@@ -39,6 +40,18 @@ function CartProvider({children}) {
       }
     };
 
+    const updateCart = (cartItem, qty) => {
+      const existingItemIndex = cart.findIndex(item => item.cartItem.id === cartItem.id);
+    
+      if (existingItemIndex !== -1) {
+        setCart(prevCart => [
+          ...prevCart.slice(0, existingItemIndex),
+          {...prevCart[existingItemIndex], qty},
+          ...prevCart.slice(existingItemIndex + 1)
+        ]);
+      }
+    };
+    
     const getTotal = () => {
       let total = 0;
       cart.map((item) => {
@@ -66,7 +79,7 @@ function CartProvider({children}) {
     if (loading) return <p>Loading... Please Wait</p>;
 
     return (
-        <CartContext.Provider value={{ cart, products, addToCart, getTotal }}>
+        <CartContext.Provider value={{ cart, products, addToCart, updateCart, getTotal }}>
           {children}
         </CartContext.Provider>
       );
