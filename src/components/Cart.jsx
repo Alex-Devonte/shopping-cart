@@ -3,7 +3,7 @@ import Header from "./Header";
 import { CartContext } from "./CartProvider";
 
 function Cart () {
-    const { cart, getTotal, updateCart } = useContext(CartContext);
+    const { cart, getTotal, updateCart, deleteCartItem } = useContext(CartContext);
 
     const minQty = 1;
     const maxQty = 99;
@@ -47,6 +47,7 @@ function Cart () {
                                         <td>${item.cartItem.price.toFixed(2)}</td>
                                         <td><input type="number" name="quantity" min={minQty} max={maxQty} value={item.qty}  onChange={(e) => handleQtyChange(item, e)}/></td>
                                         <td>${(item.cartItem.price * item.qty).toFixed(2)}</td>
+                                        <td><button type="button" onClick={() => deleteCartItem(item.cartItem.id)}>Remove</button></td>
                                     </tr>
                                 ))}
                             </tbody>
