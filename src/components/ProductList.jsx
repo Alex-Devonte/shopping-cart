@@ -1,10 +1,19 @@
 import Header from "./Header";
+import { CartContext } from "./CartProvider";
+import { useContext } from "react";
+import ProductCard from "./ProductCard";
 
 function ProductList () {
+    const { products } = useContext(CartContext);
+
     return (
         <>
             <Header />
-            <h1>Shop</h1>
+            <div>
+                {products.map((product) =>  {
+                    return <ProductCard key={product.id} product={product} />
+                })}
+            </div>
         </>
     )
 }
