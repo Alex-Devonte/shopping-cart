@@ -15,12 +15,28 @@ function CartProvider({children}) {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
   
-
     //Update cart state
-    const addToCart = (newItem) => {
-      setCart((prevCart) => [
-        ...prevCart, newItem
-      ]);
+    const addToCart = (cartItem, qty) => {
+      //Determine if item has already been added to cart
+      const existingItemIndex = cart.findIndex(item => item.cartItem.id === cartItem.id);
+
+      //Update qty if item has already been added to cart
+      if (existingItemIndex !== -1) {
+        setCart(prevCart => [
+          //Create new array containing everything before the existing item
+          ...prevCart.slice(0, existingItemIndex),
+
+          //Shallow copy to keep existing properties and update qty
+          {...prevCart[existingItemIndex], qty: prevCart[existingItemIndex].qty + qty},
+
+          //Adds the remaining items in the array after the existing item.
+          ...prevCart.slice(existingItemIndex + 1)
+        ]);
+      } else {
+        setCart((prevCart) => [
+          ...prevCart, {cartItem, qty}
+        ]);
+      }
     };
   
     //Get and set product data
