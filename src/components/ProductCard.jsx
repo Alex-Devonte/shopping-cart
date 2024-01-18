@@ -13,7 +13,7 @@ function ProductCard({product}) {
     const handleQtyChange = (event) => {
         let newQty = parseInt(event.target.value);
         setIsDisabled(false);
-        
+
         //Prevent qty from being set outside the bounds
         if (!isNaN(newQty)) {
             if (newQty > maxQty) {
@@ -39,7 +39,7 @@ function ProductCard({product}) {
                 </div>
                 <div>
                     <p>{product.title}</p>
-                    <p>{product.price}</p>
+                    <p>${product.price.toFixed(2)}</p>
                 </div>
             </Link>
             <div style={{borderTop: '1px solid black'}}>
