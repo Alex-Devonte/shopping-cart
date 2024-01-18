@@ -51,6 +51,11 @@ function CartProvider({children}) {
         ]);
       }
     };
+
+    const deleteCartItem = (id) => {
+      //Create a new array that only includes items where cartItem.id does not match the passed in id
+      setCart(prevCart => prevCart.filter(item => item.cartItem.id !== id));
+    }
     
     const getTotal = () => {
       let total = 0;
@@ -79,7 +84,7 @@ function CartProvider({children}) {
     if (loading) return <p>Loading... Please Wait</p>;
 
     return (
-        <CartContext.Provider value={{ cart, products, addToCart, updateCart, getTotal }}>
+        <CartContext.Provider value={{ cart, products, addToCart, updateCart, deleteCartItem, getTotal }}>
           {children}
         </CartContext.Provider>
       );
