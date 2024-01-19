@@ -31,7 +31,7 @@ function ProductCard({product}) {
     return (
         <div style={{border: '1px solid black'}}>
             <Link
-                to={`/product/${product.id}`}
+                to={`/products/${product.id}`}
                 state={{ productData: product }}
             >
                 <div>
