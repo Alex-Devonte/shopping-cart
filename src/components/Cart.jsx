@@ -1,15 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Header from "./Header";
 import { CartContext } from "./CartProvider";
+import { useNavigate } from "react-router-dom";
 
 function Cart () {
-    const { cart, getTotal, updateCart, deleteCartItem } = useContext(CartContext);
-
+    const { cart, getTotal, updateCart, deleteCartItem, clearCart } = useContext(CartContext);
+    const [isDisabled, setIsDisabled] = useState(false);
     const minQty = 1;
     const maxQty = 99;
 
+    const navigate = useNavigate();
+
     const handleQtyChange = (item, event) => {
         let newQty = parseInt(event.target.value);
+        setIsDisabled(false);
 
         //Prevent qty from being set outside the bounds
         if (!isNaN(newQty)) {
@@ -22,7 +26,16 @@ function Cart () {
         } else {
             //Prevent NaN
             updateCart(item.cartItem, '');
+
+            //Disable checkout button if quantity field is blank
+            setIsDisabled(true);
         }
+    }
+
+    const checkout = () => {
+        clearCart();
+        alert("Thank you for your purchase! Click Ok to return to the homepage...");
+        navigate("/");
     }
 
     return (
@@ -54,6 +67,7 @@ function Cart () {
                         </table>
                         <div>
                             <p>Total: ${getTotal()}</p>
+                            <button type="button" disabled={isDisabled} onClick={checkout}>Check out</button>
                         </div>
                     </>
                 ) : (
