@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import Header from "./Header";
 import { CartContext } from "./CartProvider";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cart () {
     const { cart, getTotal, updateCart, deleteCartItem, clearCart } = useContext(CartContext);
@@ -67,6 +67,7 @@ function Cart () {
                         </table>
                         <div>
                             <p>Total: ${getTotal()}</p>
+                            <Link to="/shop">Keep shopping</Link>
                             <button type="button" disabled={isDisabled} onClick={checkout}>Check out</button>
                         </div>
                     </>
