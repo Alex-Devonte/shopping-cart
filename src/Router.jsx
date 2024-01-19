@@ -4,12 +4,14 @@ import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
 import CartProvider from "./components/CartProvider";
 import ProductDetail from "./components/ProductDetail";
+import ErrorPage from "./components/ErrorPage";
 
 const Router = () => {
     const router = createBrowserRouter([
         {
             path: "/",
-            element: <App/>
+            element: <App/>,
+            errorElement: <ErrorPage />
         },
         {
             path: "shop",
