@@ -1,9 +1,10 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function ProductDetail() {
     const {state} = useLocation();
     const product = state.productData;
+    const navigate = useNavigate();
 
     return (
         <>
@@ -17,6 +18,7 @@ function ProductDetail() {
                     <p>{product.description}</p>
                     <p>{product.price}</p>
                 </div>
+                <button type="button" onClick={() => navigate('/shop')}>Back to shop</button>
             </div>
         </>
     )
