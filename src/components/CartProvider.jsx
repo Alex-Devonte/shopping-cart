@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import PropTypes from 'prop-types';
+
+CartProvider.propTypes = { children: PropTypes.element.isRequired };
 
 //Create default for the context
 export const CartContext = createContext({

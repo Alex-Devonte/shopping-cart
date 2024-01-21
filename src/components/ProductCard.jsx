@@ -1,6 +1,17 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "./CartProvider";
+import PropTypes from 'prop-types';
+
+ProductCard.propTypes = {
+    product: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        image: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired
+    }).isRequired
+};
+
 
 function ProductCard({product}) {
     const [quantity, setQuantity] = useState('');
