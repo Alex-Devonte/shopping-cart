@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import Header from "./Header";
 import { CartContext } from "./CartProvider";
 import { Link, useNavigate } from "react-router-dom";
+import styles from "../styles/Cart.module.css";
 
 function Cart () {
     const { cart, getTotal, updateCart, deleteCartItem, clearCart } = useContext(CartContext);
@@ -41,7 +42,7 @@ function Cart () {
     return (
         <>
             <Header />
-            <div>
+            <div className={styles.cartContainer}>
                 {cart.length > 0 ? (
                     <>
                         <table>
@@ -56,10 +57,11 @@ function Cart () {
                             <tbody>
                                 {cart.map((item) => (
                                     <tr key={item.cartItem.id}>
-                                        <td>
+                                        <td className={styles.itemTd}>
                                             <Link to={`/products/${item.cartItem.id}`} state={{ productData: item.cartItem }}>
-                                                <img src={item.cartItem.image}  style={{width: '150px'}}/>
+                                                <img src={item.cartItem.image} />
                                             </Link>
+                                            <p>{item.cartItem.title}</p>
                                         </td>
                                         <td>${item.cartItem.price.toFixed(2)}</td>
                                         <td><input type="number" name="quantity" min={minQty} max={maxQty} value={item.qty}  onChange={(e) => handleQtyChange(item, e)}/></td>
@@ -69,14 +71,14 @@ function Cart () {
                                 ))}
                             </tbody>
                         </table>
-                        <div>
+                        <div className={styles.checkout}>
                             <p>Total: ${getTotal()}</p>
                             <Link to="/shop">Keep shopping</Link>
                             <button type="button" disabled={isDisabled} onClick={checkout}>Check out</button>
                         </div>
                     </>
                 ) : (
-                    <p>Your cart is empty</p>
+                    <p className={styles.emptyMsg}>Your cart is empty</p>
                 )}
             </div>
         </>

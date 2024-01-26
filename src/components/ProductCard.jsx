@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "./CartProvider";
 import PropTypes from 'prop-types';
+import styles from "../styles/ProductCard.module.css";
 
 ProductCard.propTypes = {
     product: PropTypes.shape({
@@ -40,23 +41,23 @@ function ProductCard({product}) {
     }
 
     return (
-        <div style={{border: '1px solid black'}}>
+        <div className={styles.productCard}>
             <Link
                 to={`/products/${product.id}`}
                 state={{ productData: product }}
             >
-                <div>
-                    <img src={product.image}  style={{width: '150px'}}/>
+                <div className={styles.productImgContainer}>
+                    <img className={styles.productImg} src={product.image}/>
                 </div>
-                <div>
+                <div className={styles.productInfoSection}>
                     <p>{product.title}</p>
                     <p>${product.price.toFixed(2)}</p>
                 </div>
             </Link>
-            <div style={{borderTop: '1px solid black'}}>
-                <label htmlFor="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" min={minQty} max={maxQty} value={quantity} onChange={handleQtyChange}/>
-                <button onClick={() => addToCart(product, quantity)} disabled={isDisabled}>Add to cart</button>
+            <div className={styles.purchaseSection}>
+                <label htmlFor="quantity">Quantity: </label>
+                <input type="number" className={styles.quantityInput} id="quantity" name="quantity" min={minQty} max={maxQty} value={quantity} onChange={handleQtyChange}/>
+                <button className={styles.addToCartBtn} onClick={() => addToCart(product, quantity)} disabled={isDisabled}>Add to cart</button>
             </div>
         </div>
     )
