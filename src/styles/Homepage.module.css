@@ -1,0 +1,27 @@
+.homepageContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+    text-align: center;
+}
+
+.homepage h1 {
+    font-size: 72px;
+    margin-bottom: 25px;
+    padding: 25px;
+}
+
+#shopNowBtn {
+    padding: 15px;
+    width: 150px;
+}
+
+@media screen and (max-width: 500px) {
+    .homepageContainer {
+        margin-top: 50px;
+    }
+
+    .homepage h1 {
+        font-size: 62px;
+    }
+}

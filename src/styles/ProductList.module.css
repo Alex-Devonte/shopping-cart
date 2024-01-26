@@ -1,0 +1,15 @@
+.productListContainer {
+    display: grid;
+    gap: 25px;
+    grid-template-columns: repeat( auto-fit, minmax(500px, 1fr) );
+    padding: 25px;
+}
+
+@media screen and (max-width: 500px) {
+    .productListContainer {
+        gap: 0;
+        justify-content: center;
+        margin: 0;
+        padding: 15px;
+    }
+}
