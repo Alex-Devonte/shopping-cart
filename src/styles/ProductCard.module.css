@@ -1,7 +1,19 @@
 .productCard {
-    border: 1px solid #000;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 5px 1px 10px 0px #ccc;
     font-size: 18px;
     padding: 20px;
+}
+
+.productCard a {
+    color: #000;
+    text-decoration: none;
+}
+
+.productCard a:hover {
+    text-decoration: underline;
 }
 
 .productImgContainer {
@@ -21,7 +33,7 @@
 }
 
 .purchaseSection {
-    border: 1px solid #000;
+    border-radius: 5px;
     padding: 10px;
     text-align: center;
 }
@@ -31,8 +43,16 @@
 }
 
 .addToCartBtn {
+    background-color: initial;
     margin: 5px;
     padding: 5px;
+    transition: background-color .3s ease-in-out;
+}
+
+.addToCartBtn:hover:not(:disabled) {
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {

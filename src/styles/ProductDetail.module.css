@@ -1,5 +1,4 @@
 .productDetailContainer {
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     font-size: 20px;

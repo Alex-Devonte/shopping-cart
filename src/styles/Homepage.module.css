@@ -1,24 +1,52 @@
 .homepageContainer {
+    background: url('../assets/home.jpg') no-repeat center center fixed;
+    background-size: cover; 
     display: flex;
     justify-content: center;
-    margin-top: 250px;
+    height: 100vh;
     text-align: center;
 }
 
+.homepage {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+    justify-content: center;
+    margin-top: 300px;
+    padding: 35px;
+}
+
 .homepage h1 {
+    color: #fafafa;
     font-size: 72px;
     margin-bottom: 25px;
-    padding: 25px;
 }
 
 #shopNowBtn {
+    background-color: #D3E1EE;
+    cursor: pointer;
+    font-weight: bold;
     padding: 15px;
+    transition: background-color .4s;
     width: 150px;
+}
+
+#shopNowBtn:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 @media screen and (max-width: 500px) {
     .homepageContainer {
         margin-top: 50px;
+    }
+
+    .homepage {
+        height: 300px;
+        margin-top: 150px;
     }
 
     .homepage h1 {
